@@ -1,0 +1,15 @@
+.ccircle {
+  fill: red;
+  stroke: green;
+  stroke-width: 3px;
+}
+.cover {
+  fill: aqua;
+  stroke: black;
+  stroke-width: 3px;
+}
+.cout {
+  fill: coral;
+  stroke: cyan;
+  stroke-width: 3px;
+}
