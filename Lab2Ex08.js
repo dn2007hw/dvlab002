@@ -1,4 +1,4 @@
-const svg = d3.select("body")
+d3.select("body")
 .append("div")
 .style("background-color", "blue")
 .style("width", "100px")
