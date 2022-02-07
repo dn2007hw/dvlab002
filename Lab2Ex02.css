@@ -1,0 +1,61 @@
+h1 {
+  font: courier;
+  color: blue;
+  text-align: center;
+  background-color: aqua;
+}
+div {
+  position: relative;
+  background-color: lightsalmon;
+  padding: 5px;
+  display: none;
+}
+p.p1:hover {
+  background-color: coral;
+  color: purple;
+  font-size: "xx-large";
+  line-height: 3;
+  font-family: "Veradana";
+}
+p.p1:hover + div {
+  position: absolute;
+  display: inline-block;
+  background-color: yellow;
+}
+.p2 {
+  color: brown;
+}
+p.p2:hover {
+  background-color: mediumspringgreen;
+  color: purple;
+  font-size: "xx-large";
+  line-height: 3;
+  font-family: "Brush Script MT";
+}
+.p3 {
+  color: magenta;
+}
+p.p3:hover {
+  background-color: mediumslateblue;
+  color: purple;
+  font-size: "xx-large";
+  line-height: 3;
+  font-family: "Arial";
+  text-align: center;
+}
+.p4 {
+  color: coral;
+}
+p.p4:hover {
+  background-color: mediumorchid;
+  color: purple;
+  font-size: "xx-large";
+  line-height: 3;
+  font-family: "Courier";
+  text-align: right;
+}
+p.p4:hover + div {
+  position: absolute;
+  display: inline-block;
+  background-color: yellow;
+}

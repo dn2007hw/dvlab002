@@ -1,0 +1,22 @@
+.pulse {
+  fill: red;
+}
+.pulse:hover {
+  -webkit-animation-name: pulsar;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-name: pulsar;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes pulsar {
+  from {
+    fill: green;
+  }
+  to {
+    fill: aqua;
+    r: 15;
+  }
+}
