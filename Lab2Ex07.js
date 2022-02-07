@@ -1,0 +1,17 @@
+d3.select("body")
+.append("div")
+.style("width", "100px")
+.style("height", "100px")
+.style("background-color", "blue")
+.transition()
+.duration(1000)
+.style("background-color", "red")
+.style("width", "150px")
+.style("height", "150px")
+.transition()
+.duration(2000)
+.style("background-color", "green")
+.style("width", "300px")
+.style("height", "300px");
+  
+
