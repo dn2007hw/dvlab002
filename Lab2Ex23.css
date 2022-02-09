@@ -1,0 +1,15 @@
+.lineClass1 {
+  fill: rgb(127, 182, 39);
+  stroke: fuchsia;
+  stroke-width: 1;
+}
+.lineClass2 {
+  fill: rgb(255, 0, 179);
+  stroke: cornflowerblue;
+  stroke-width: 1.5;
+}
+.lineClass3 {
+  fill: rgb(0, 26, 255);
+  stroke: crimson;
+  stroke-width: 2;
+}
