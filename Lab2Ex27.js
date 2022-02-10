@@ -20,7 +20,7 @@ var svg = d3
   .append("g")
   .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  function drawPie(data) {
+function drawPie(data) {
   svg.selectAll("*").remove();
   var path = svg
     .selectAll("path")

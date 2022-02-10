@@ -18,36 +18,41 @@ d3.csv(csvdata, function (data) {
       radius: data[d].Population / 3000,
       Country: data[d].id,
       Population: data[d].Population,
-      Region: data[d].Region
-        };
+      Region: data[d].Region,
+    };
   });
-  
+
   var regionArray = [];
-  for (x in nodes){
-    regionArray[nodes[x].Country]=nodes[x];
+  for (x in nodes) {
+    regionArray[nodes[x].Country] = nodes[x];
   }
   var links = d3.range(nodes.length).map(function (d) {
     return {
       source: regionArray[nodes[d].Region],
-      target: nodes[d]
+      target: nodes[d],
     };
   });
 
   // Initialize the links
   var link = d3
-  .select("svg")
+    .select("svg")
     .selectAll("line")
     .data(links)
     .enter()
     .append("line")
-      .style("stroke", "#aaa");
+    .style("stroke", "#aaa");
 
   simulation = d3
     .forceSimulation(nodes)
-    .force("link", d3.forceLink()                               // This force provides links between nodes
-            .id(function(d) { 
-              return d.id; })                     // This provide  the id of a node
-            .links(links)) 
+    .force(
+      "link",
+      d3
+        .forceLink() // This force provides links between nodes
+        .id(function (d) {
+          return d.id;
+        }) // This provide  the id of a node
+        .links(links)
+    )
     .force("charge", d3.forceManyBody().strength(5))
     .force("radial", d3.forceRadial(250, width / 2, height / 2))
     .force("center", d3.forceCenter(width / 2, height / 2))
@@ -58,7 +63,7 @@ d3.csv(csvdata, function (data) {
       })
     )
     .on("tick", ticked);
-    
+
   function ticked() {
     var u = d3
       .select("svg")
@@ -80,11 +85,19 @@ d3.csv(csvdata, function (data) {
       .on("mouseover", onMouseOver)
       .on("mouseout", onMouseOut);
 
-      link
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+    link
+      .attr("x1", function (d) {
+        return d.source.x;
+      })
+      .attr("y1", function (d) {
+        return d.source.y;
+      })
+      .attr("x2", function (d) {
+        return d.target.x;
+      })
+      .attr("y2", function (d) {
+        return d.target.y;
+      });
   }
 
   function onMouseOver(d, i) {

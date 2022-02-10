@@ -27,7 +27,7 @@ function ticked() {
     .selectAll("circle")
     .data(nodes)
     .join("circle")
-    .attr("fill", function (d) { 
+    .attr("fill", function (d) {
       return myColor(d.radius);
     })
     .attr("r", function (d) {

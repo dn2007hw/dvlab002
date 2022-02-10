@@ -1,5 +1,5 @@
-var width = 400,
-  height = 400;
+var width = 1000,
+  height = 500;
 // setup svg
 d3.select("body").append("svg").attr("width", width).attr("height", height);
 // generate some random data
@@ -27,7 +27,7 @@ function ticked() {
     .selectAll("circle")
     .data(nodes)
     .join("circle")
-    .attr("fill", function (d) { 
+    .attr("fill", function (d) {
       return "blue";
     })
     .attr("r", function (d) {
@@ -39,10 +39,9 @@ function ticked() {
     .attr("cy", function (d) {
       return d.y;
     })
-    .on("mouseover", function(event){
-      d3.select(this)
-        .attr("fill", function (d) { 
-          return myColor(d.radius);
-        });
+    .on("mouseover", function (event) {
+      d3.select(this).attr("fill", function (d) {
+        return myColor(d.radius);
+      });
     });
 }

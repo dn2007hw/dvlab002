@@ -12,22 +12,25 @@ svg
   .text("Stock Price");
 var x = d3.scaleBand().range([0, width]).padding(0.4);
 var y = d3.scaleLinear().range([height, 0]);
-var g = svg
-  .append("g")
-  .attr("transform", "translate(" + 100 + "," + 100 + ")");
+var g = svg.append("g").attr("transform", "translate(" + 100 + "," + 100 + ")");
+
 d3.csv("data/csvfile01.csv").then(function (data) {
+  //define x axis
   x.domain(
     data.map(function (d) {
       return d.year;
     })
   );
 
+  //define y axis
   y.domain([
     0,
     d3.max(data, function (d) {
       return d.value;
     }),
   ]);
+
+  //add bottom axis
   g.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x))
@@ -37,6 +40,8 @@ d3.csv("data/csvfile01.csv").then(function (data) {
     .attr("text-anchor", "end")
     .attr("stroke", "black")
     .text("Year");
+
+  //add left axis
   g.append("g")
     .call(
       d3
@@ -53,6 +58,7 @@ d3.csv("data/csvfile01.csv").then(function (data) {
     .attr("text-anchor", "end")
     .attr("stroke", "black")
     .text("Stock Price");
+
   g.selectAll(".bar")
     .data(data)
     .enter()
@@ -81,6 +87,8 @@ d3.csv("data/csvfile01.csv").then(function (data) {
 //mouseover event handler function
 function onMouseOver(d, i) {
   d3.select(this).attr("class", "highlight");
+
+  // transition of bars when the mouseover happens over the year.
   d3.select(this)
     .transition() // adds animation
     .duration(400)
@@ -91,6 +99,8 @@ function onMouseOver(d, i) {
     .attr("height", function (d) {
       return height - y(d.value) + 10;
     });
+
+  // display corresponding stock price when the mouseover happens over the year.
   g.append("text")
     .attr("class", "val")
     .attr("x", function () {
@@ -106,7 +116,8 @@ function onMouseOver(d, i) {
 
 //mouseout event handler function
 function onMouseOut(d, i) {
-  // use the text label class to remove label on mouseout
+  // transition of bars when the mouseover happens over the year.
+
   d3.select(this).attr("class", "bar");
   d3.select(this)
     .transition() // adds animation
@@ -118,5 +129,7 @@ function onMouseOut(d, i) {
     .attr("height", function (d) {
       return height - y(i.value);
     });
+
+  // use the text label class to remove label on mouseout
   d3.selectAll(".val").remove();
 }

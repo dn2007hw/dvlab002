@@ -13,9 +13,7 @@ svg
 var x = d3.scaleBand().range([0, width]).padding(0.4);
 var y = d3.scaleLinear().range([height, 0]);
 var myColor;
-var g = svg
-  .append("g")
-  .attr("transform", "translate(" + 100 + "," + 100 + ")");
+var g = svg.append("g").attr("transform", "translate(" + 100 + "," + 100 + ")");
 d3.csv("data/csvfile01.csv").then(function (data) {
   x.domain(
     data.map(function (d) {
@@ -27,16 +25,19 @@ d3.csv("data/csvfile01.csv").then(function (data) {
     0,
     d3.max(data, function (d) {
       return d.value;
-    })
+    }),
   ]);
   //setting up a color range
-   myColor = d3.scaleLinear().domain([
-    0,
-    d3.max(data, function (d) {
-      return d.value;
-    }),
-  ]).range(["blue", "red"]);
-  
+  myColor = d3
+    .scaleLinear()
+    .domain([
+      0,
+      d3.max(data, function (d) {
+        return d.value;
+      }),
+    ])
+    .range(["blue", "red"]);
+
   g.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x))
@@ -46,8 +47,8 @@ d3.csv("data/csvfile01.csv").then(function (data) {
     .attr("text-anchor", "end")
     .attr("stroke", "black")
     .text("Year");
-  
-    g.append("g")
+
+  g.append("g")
     .call(
       d3
         .axisLeft(y)
@@ -63,8 +64,8 @@ d3.csv("data/csvfile01.csv").then(function (data) {
     .attr("text-anchor", "end")
     .attr("stroke", "black")
     .text("Stock Price");
-  
-    g.selectAll(".bar")
+
+  g.selectAll(".bar")
     .data(data)
     .enter()
     .append("rect")
@@ -82,7 +83,7 @@ d3.csv("data/csvfile01.csv").then(function (data) {
     .ease(d3.easeLinear)
     .duration(3000)
     .delay(function (d, i) {
-      return i ;
+      return i;
     })
     .attr("height", function (d) {
       return height - y(d.value);
@@ -91,11 +92,9 @@ d3.csv("data/csvfile01.csv").then(function (data) {
 
 //mouseover event handler function
 function onMouseOver(d, i) {
+  d3.select(this).classed("bar", false).attr("fill", myColor(i.value));
 
-  d3.select(this).classed("bar", false)
-  .attr("fill", myColor(i.value));
-
- d3.select(this)
+  d3.select(this)
     .transition() // adds animation
     .duration(400)
     .attr("width", x.bandwidth() + 5)
